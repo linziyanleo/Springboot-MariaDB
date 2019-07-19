@@ -1,17 +1,24 @@
-/**
- * Spring Boot 应用启动类
- *
- * Created by bysocket on 16/4/26.
- */
-// Spring Boot 应用的标识
-@SpringBootApplication
-// mapper 接口类扫描包配置
-@MapperScan("org.spring.springboot.dao")
-public class Application {
+package com.service.impl;
 
-    public static void main(String[] args) {
-        // 程序启动入口
-        // 启动嵌入式的 Tomcat 并初始化 Spring 环境及其各 Spring 组件
-        SpringApplication.run(Application.class,args);
+import com.dao.CityDao;
+import com.domain.City;
+import com.service.CityService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * 城市业务逻辑实现类
+ *
+ * Created by xchunzhao on 02/05/2017.
+ */
+@Service
+public class CityServiceImpl implements CityService {
+
+    @Autowired
+    private CityDao cityDao;
+
+    public City findCityByName(String cityName) {
+        return cityDao.findByName(cityName);
     }
+
 }
